@@ -1,0 +1,32 @@
+{
+  "files.associations": {
+    "stdio.h": "c",
+    "dirent.h": "c",
+    "stdlib.h": "c",
+    "random": "c",
+    "numbers": "c",
+    "floatmatrix.h": "c",
+    "funciones.h": "c",
+    "vector": "c",
+    "xhash": "c",
+    "xstring": "c",
+    "printe.h": "c",
+    "searchrelativepath.h": "c",
+    "arrangefilename.h": "c",
+    "string.h": "c",
+    "parseFileDeps.h": "c",
+    "deptreenode.h": "c",
+    "libgen.h": "c",
+    "get_args.h": "c",
+    "get_relative_filepath.h": "c",
+    "create_header_file.h": "c",
+    "stdbool.h": "c",
+    "colors.h": "c",
+    "*.tcc": "c",
+    "stdarg.h": "c",
+    "logger.h": "c",
+    "log.h": "c",
+    "app.h": "c"
+  },
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}"
+}

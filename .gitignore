@@ -1,0 +1,9 @@
+# Ignore the output files
+build/*
+
+# Ignore all binaries on project
+*.exe
+*.out
+
+# In case of adding libraries
+lib/*
