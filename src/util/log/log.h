@@ -9,11 +9,11 @@
 
 #include "colors.h"
 
-typedef enum {
-    DEBUG,
-    INFO,
-    WARN,
-    ERROR
+typedef enum LogLevel {
+    LOG_DEBUG,
+    LOG_INFO,
+    LOG_WARN,
+    LOG_ERROR
 } LogLevel;
 
 void cres_log(LogLevel log_level, char* msg, ...);

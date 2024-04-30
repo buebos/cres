@@ -3,15 +3,11 @@
 
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 
-#include "../util/app.h"
+#include "../util/app/app.h"
 
-typedef enum {
-    CORRECT,
-    NO_FILE_ERROR
-} GetArgsStatus;
-
-Args get_args(App *app, int argc, char **argv);
+void set_app_by_args(App *app, int argc, char *argv[]);
 
 char *get_args_error_msg(short status);
 

@@ -1,33 +1,43 @@
-#include "src/cli/get_args.h"
-#include "src/finder/get_relative_filepath.h"
-#include "src/header/create_header_file.h"
-#include "src/util/app.h"
+#include "src/cli/set_app_by_args.h"
+#include "src/config/set_app_by_config.h"
+#include "src/util/app/app.h"
+#include "src/util/app/status.h"
+#include "src/util/app/command.h"
 #include "src/util/log/log.h"
 
-int main(int argc, char **argv) {
+int main(int argc, char *argv[]) {
     App app = {0};
 
-    /** TODO: Maybe refactor to a set_args function? */
-    app.args = get_args(&app, argc, argv);
+    app.params.config_dir = DEFAULT_CONFIG_DIR;
+    app.params.file_target = DEFAULT_FILE_TARGET;
 
-    if (app.status != CORRECT) {
-        cres_log(ERROR, get_args_error_msg(app.status));
+    app.command = command_factory(argc > 1 ? argv[1] : NULL);
+
+    if (app.command.id == UNKNOWN) {
+        cres_log(
+            LOG_ERROR,
+            get_app_status_msg(app.status = UNKNOWN_COMMAND)
+
+        );
         return app.status;
     }
 
     /**
-     * The args could contain a filename that is unique in the whole
-     * source code root directory or a relative path that indicates
-     * already where to find the entry file. Therefore the filepath
-     * must be arranged from the args argument.
+     * Use data passed in by the user via args or config
+     * file to initialize the app's general context. Notice
+     * that args will override params defined in the config
+     * file.
      */
-    char *relative_filepath = get_relative_filepath(app.args.filename);
+    set_app_by_config(&app, app.params.config_dir);
+    set_app_by_args(&app, argc, argv);
 
-    if (app.args.should_gen_header_only) {
-        /** Gen a header file for the c filename requested and end the program */
-        create_header_file(&app, relative_filepath);
+    /** Validation of app context (params mainly) */
+    set_app_status(&app);
+
+    if (app.status != SUCCESS) {
+        cres_log(LOG_ERROR, get_app_status_msg(app.status));
         return app.status;
     }
 
-    return app.status;
+    return app.command.run(&app);
 }

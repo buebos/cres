@@ -1,0 +1,19 @@
+{
+  "author": "Gael Herrera",
+  "description": "This is a sample project for the cres tool",
+
+  "compiler": {
+    "command": "gcc",
+    "args": ["-o", "build/sample"]
+  },
+  "finder": {
+    "strategy": "FILE_ID",
+    "skip-files": ["src/main.c"]
+  },
+
+  "run": {
+    "entry": "main.c"
+  },
+  "prefix": {},
+  "header": {}
+}

@@ -17,7 +17,7 @@
     "parseFileDeps.h": "c",
     "deptreenode.h": "c",
     "libgen.h": "c",
-    "get_args.h": "c",
+    "set_app_by_args.h": "c",
     "get_relative_filepath.h": "c",
     "create_header_file.h": "c",
     "stdbool.h": "c",
@@ -26,7 +26,18 @@
     "stdarg.h": "c",
     "logger.h": "c",
     "log.h": "c",
-    "app.h": "c"
+    "app.h": "c",
+    "set_app_by_config.h": "c",
+    "command.h": "c",
+    "run.h": "c",
+    "header.h": "c",
+    "help.h": "c",
+    "status.h": "c"
   },
-  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}"
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}",
+  "material-icon-theme.folders.associations": {
+    "run": "home",
+    "header": "mappings",
+    "help": "messages"
+  }
 }
