@@ -3,7 +3,7 @@
 const char *UNKNOWN_ERROR = "An unknown error occurred, please report since this is probably bug.";
 
 const char *ERROR_MESSAGES[] = {
-    "Arguments are correct but still get_args_error_msg was called.",
+    "Arguments are correct but still get_app_status_msg was called.",
     "Please provide the name of the entry file as first argument.",
     "Unknown command, run 'cres help' for more information."
 

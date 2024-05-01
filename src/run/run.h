@@ -2,8 +2,8 @@
 
 #define __RUN_H__
 
-#include "../../util/app/app.h"
-#include "../../util/log/log.h"
+#include "../util/app.h"
+#include "../util/log/log.h"
 
 Status run(App *app);
 

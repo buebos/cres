@@ -25,10 +25,12 @@ typedef enum Env {
     PROD
 } Env;
 
-typedef struct Params {
-    int argc;
-    char **argv;
+typedef struct Args {
+    int len;
+    char **data;
+} Args;
 
+typedef struct Params {
     char *config_dir;
     char *file_target;
 
@@ -39,6 +41,7 @@ typedef struct App {
     /** Original parameters */
 
     Env env;
+    Args args;
     Command command;
     Params params;
     Status status;

@@ -5,10 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../util/app/app.h"
+#include "../util/app.h"
 
-void set_app_by_args(App *app, int argc, char *argv[]);
-
-char *get_args_error_msg(short status);
+Status set_app_by_general_args(App *app, Args *args);
 
 #endif /* __GET_ARGS__ */

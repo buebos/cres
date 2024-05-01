@@ -7,8 +7,8 @@
  * steps should be followed:
  *
  * 1. Add the CommandID enum member
- * 2. Add the command implementation at dir src/core
- * 3. Add the command creation logic at file src/command.c
+ * 2. Add the command implementation at a new subdir on src
+ * 3. Add the command creation logic at file src/set_app_command.c
  * @version 0.1
  * @date 2024-04-30
  *
@@ -37,7 +37,7 @@ typedef enum CommandID {
      * Resolve the C files to export as objects, link them
      * and write the output.
      */
-    COMPILE,
+    BUILD,
 
     /**
      * Bundle all C files referenced by headers into a single
@@ -70,15 +70,17 @@ typedef enum CommandID {
     UNKNOWN
 } CommandID;
 
+/** This will be defined later inside app.h */
+typedef struct Args Args;
 typedef struct App App;
 
 typedef enum Status (*RunCommandOperation)(App* app);
+typedef enum Status (*HandleArgsOperation)(App* app, Args* args);
 
 typedef struct Command {
     CommandID id;
     RunCommandOperation run;
+    HandleArgsOperation handle_args;
 } Command;
-
-Command command_factory(char* command_id);
 
 #endif

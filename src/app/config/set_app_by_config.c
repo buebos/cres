@@ -7,5 +7,6 @@
  * to be able to decide the behavior of the program in a more efficient
  * and centrelized way on the app's context.
  */
-void set_app_by_config(App* app, char* config_dir) {
+Status set_app_by_config(App* app, char* config_dir) {
+    return SUCCESS;
 }

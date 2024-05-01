@@ -2,7 +2,7 @@
 
 #define __STATUS_H__
 
-#include "app.h"
+#include "../util/app.h"
 
 void set_app_status(App *app);
 
