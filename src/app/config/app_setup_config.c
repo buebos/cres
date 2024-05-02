@@ -1,4 +1,4 @@
-#include "set_app_by_config.h"
+#include "app_setup_config.h"
 
 /**
  * TODO: This should contain the main file to read the config
@@ -7,6 +7,6 @@
  * to be able to decide the behavior of the program in a more efficient
  * and centrelized way on the app's context.
  */
-Status set_app_by_config(App* app, char* config_dir) {
-    return SUCCESS;
+void app_setup_config(App* app, char* config_dir) {
+    return;
 }

@@ -4,6 +4,6 @@
 
 #include "../../util/app.h"
 
-Status set_app_by_config(App* app, char* config_dir);
+void app_setup_config(App* app, char* config_dir);
 
 #endif

@@ -5,7 +5,7 @@
 #include "../util/app.h"
 #include "../util/log/log.h"
 
-Status help(App* app);
-Status help_handle_args(App* app, Args* args);
+void help(App* app);
+void help_handle_args(App* app, Args* args);
 
 #endif

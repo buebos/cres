@@ -1,4 +1,4 @@
-#include "set_app_command.h"
+#include "app_set_command.h"
 
 #include "build/build.h"
 #include "header/header.h"
@@ -28,7 +28,7 @@ Command command_factory(char *command_id) {
     return (Command){UNKNOWN, NULL, NULL};
 }
 
-Status set_app_command(App *app, Args *args) {
+void app_set_command(App *app, Args *args) {
     /**
      * Special case: when called with the executable name
      * only, a cli tool should run a default command;
@@ -36,7 +36,7 @@ Status set_app_command(App *app, Args *args) {
      */
     if (args->len == 1) {
         app->command = command_factory((char *)COMMAND_IDS[0]);
-        return SUCCESS;
+        return;
     }
 
     /**
@@ -51,12 +51,10 @@ Status set_app_command(App *app, Args *args) {
 
             if (strcmp(arg, current_command) == 0) {
                 app->command = command_factory(arg);
-                return SUCCESS;
+                return;
             }
         }
     }
 
-    cres_log(LOG_ERROR, "Unknown command");
-
-    return UNKNOWN_COMMAND;
+    app_throw_error(UNKNOWN_COMMAND_ERROR);
 }

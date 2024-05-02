@@ -8,8 +8,6 @@
  * @param params The arguments struct that was constructed from the
  * call to the executable command
  */
-Status header(App* app) {
+void header(App* app) {
     cres_log(LOG_WARN, "HEADER Command not implemented");
-
-    return SUCCESS;
 }

@@ -4,6 +4,6 @@
 #include "../util/app.h"
 #include "../util/log/log.h"
 
-Status header(App* app);
+void header(App* app);
 
 #endif

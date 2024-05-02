@@ -4,6 +4,6 @@
 #include "../util/app.h"
 #include "../util/log/log.h"
 
-Status build(App* app);
+void build(App* app);
 
 #endif /* __CREATE_HEADER_FILE__ */

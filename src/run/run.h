@@ -5,6 +5,6 @@
 #include "../util/app.h"
 #include "../util/log/log.h"
 
-Status run(App *app);
+void run(App *app);
 
 #endif

@@ -6,6 +6,6 @@
 #include "util/command.h"
 #include "util/log/log.h"
 
-Status set_app_command(App* app, Args* args);
+void app_set_command(App* app, Args* args);
 
 #endif  // !__SET_APP_COMMANDH__

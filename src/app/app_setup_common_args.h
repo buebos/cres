@@ -7,6 +7,6 @@
 
 #include "../util/app.h"
 
-Status set_app_by_general_args(App *app, Args *args);
+void app_setup_common_args(App *app, Args *args);
 
 #endif /* __GET_ARGS__ */

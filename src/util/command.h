@@ -8,7 +8,7 @@
  *
  * 1. Add the CommandID enum member
  * 2. Add the command implementation at a new subdir on src
- * 3. Add the command creation logic at file src/set_app_command.c
+ * 3. Add the command creation logic at file src/app_set_command.c
  * @version 0.1
  * @date 2024-04-30
  *
@@ -74,13 +74,13 @@ typedef enum CommandID {
 typedef struct Args Args;
 typedef struct App App;
 
-typedef enum Status (*RunCommandOperation)(App* app);
-typedef enum Status (*HandleArgsOperation)(App* app, Args* args);
+typedef void (*RunCommandOperation)(App* app);
+typedef void (*HandleArgsOperation)(App* app, Args* args);
 
 typedef struct Command {
     CommandID id;
     RunCommandOperation run;
-    HandleArgsOperation handle_args;
+    HandleArgsOperation setup_args;
 } Command;
 
 #endif

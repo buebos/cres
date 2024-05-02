@@ -13,12 +13,12 @@
 #define DEFAULT_COMMAND_ID HELP
 #define DEFAULT_COMMAND_FN help
 
-typedef enum Status {
+typedef enum AppStatus {
     SUCCESS,
     NO_TARGET_FILE_ERROR,
     NO_COMMAND_ERROR,
-    UNKNOWN_COMMAND
-} Status;
+    UNKNOWN_COMMAND_ERROR
+} AppStatus;
 
 typedef enum Env {
     DEV,
@@ -44,7 +44,9 @@ typedef struct App {
     Args args;
     Command command;
     Params params;
-    Status status;
 } App;
+
+char *get_app_status_msg(AppStatus status);
+void app_throw_error(AppStatus error_status);
 
 #endif

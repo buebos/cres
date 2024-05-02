@@ -1,4 +1,6 @@
-#include "status.h"
+#include "app.h"
+
+#include "log/log.h"
 
 const char *UNKNOWN_ERROR = "An unknown error occurred, please report since this is probably bug.";
 
@@ -10,21 +12,7 @@ const char *ERROR_MESSAGES[] = {
 };
 const size_t ERROR_MESSAGES_LEN = sizeof(ERROR_MESSAGES) / sizeof(char *);
 
-/**
- * @brief Validate the app state and set the corresponding status
- * on it.
- *
- * @param app
- */
-void set_app_status(App *app) {
-    if (!app->command.run) {
-        app->status = NO_COMMAND_ERROR;
-    } else if (!app->params.file_target) {
-        app->status = NO_TARGET_FILE_ERROR;
-    }
-}
-
-char *get_app_status_msg(Status status) {
+char *get_app_status_msg(AppStatus status) {
     for (size_t i = 0; i < ERROR_MESSAGES_LEN; i++) {
         if (i + 1 == status) {
             return (char *)ERROR_MESSAGES[i];
@@ -32,4 +20,9 @@ char *get_app_status_msg(Status status) {
     }
 
     return (char *)UNKNOWN_ERROR;
+}
+
+void app_throw_error(AppStatus error_status) {
+    cres_log(LOG_ERROR, get_app_status_msg(error_status));
+    exit(error_status);
 }
