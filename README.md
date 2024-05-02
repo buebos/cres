@@ -2,7 +2,8 @@
 
 ## Intro
 
-This project mainly aims to compile the objects of a set of c files based on the header include statements; then output the executable result of linking those objects. Other functionality might be implemented as well e.g.: generating a header declaration for a concrete C file, adding commands to a build pipeline (similar but not as complex as makefile), among others to decide.
+The primary goal of this project is to ease the compilation of object files from a set of C source files, based on their header inclusion statements, and subsequently link these objects to produce an executable. Additional functionalities may include generating header declarations for specific C files, integrating commands into a build pipeline (similar to cmake but with basic features), and maybe more.
 
 ## TLDR
-Automatically generate a command that compiles a modular C project from an entry file.
+
+Automate the generation of compilation commands for modular C projects starting from an entry file.
