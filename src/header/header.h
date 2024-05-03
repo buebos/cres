@@ -4,6 +4,6 @@
 #include "../util/app.h"
 #include "../util/log/log.h"
 
-void header(App* app);
+extern const Command HELP_COMMAND;
 
 #endif

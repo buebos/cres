@@ -7,6 +7,8 @@
 
 #include "command.h"
 
+#define APP_NAME "cres"
+
 #define DEFAULT_FILE_TARGET "./main.c"
 #define DEFAULT_CONFIG_DIR "./cres.json"
 
@@ -17,13 +19,15 @@ typedef enum AppStatus {
     SUCCESS,
     NO_TARGET_FILE_ERROR,
     NO_COMMAND_ERROR,
-    UNKNOWN_COMMAND_ERROR
+    UNKNOWN_COMMAND_ERROR,
+    UNKNOWN_ARG_ERROR,
+    ARG_MISSING_PARAM_ERROR
 } AppStatus;
 
-typedef enum Env {
-    DEV,
-    PROD
-} Env;
+typedef struct AppError {
+    AppStatus status;
+    char *msg;
+} AppError;
 
 typedef struct Args {
     int len;
@@ -32,21 +36,18 @@ typedef struct Args {
 
 typedef struct Params {
     char *config_dir;
-    char *file_target;
 
-    bool should_suppress_config;
+    bool should_skip_config;
 } Params;
 
 typedef struct App {
-    /** Original parameters */
-
-    Env env;
     Args args;
-    Command command;
     Params params;
+
+    const Command *command;
 } App;
 
 char *get_app_status_msg(AppStatus status);
-void app_throw_error(AppStatus error_status);
+void app_throw_error(AppError error, ...);
 
 #endif

@@ -8,9 +8,7 @@ int main(int argc, char *argv[]) {
     App app = {0};
 
     /** App initialization */
-    app.args.len = argc;
-    app.args.data = argv;
-    app.params.file_target = DEFAULT_FILE_TARGET;
+    app.args = (Args){argc, argv};
     app.params.config_dir = DEFAULT_CONFIG_DIR;
 
     /**
@@ -22,7 +20,7 @@ int main(int argc, char *argv[]) {
     app_setup_common_args(&app, &app.args);
 
     /** Notice that config may override params setted by cli args */
-    if (!app.params.should_suppress_config) {
+    if (!app.params.should_skip_config) {
         app_setup_config(&app, app.params.config_dir);
     }
 
@@ -35,13 +33,13 @@ int main(int argc, char *argv[]) {
      * Read and set args passed in specifically to the command
      * being executed.
      */
-    app.command.setup_args(&app, &app.args);
+    app.command->setup_args(&app, &app.args);
 
     /**
      * The most important thing; after the setup is successful,
      * run the command.
      */
-    app.command.run(&app);
+    app.command->run(&app);
 
     return SUCCESS;
 }

@@ -4,6 +4,6 @@
 #include "../util/app.h"
 #include "../util/log/log.h"
 
-void build(App* app);
+extern const Command BUILD_COMMAND;
 
 #endif /* __CREATE_HEADER_FILE__ */

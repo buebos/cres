@@ -10,12 +10,12 @@
 #include "colors.h"
 
 typedef enum LogLevel {
-    LOG_DEBUG,
     LOG_INFO,
     LOG_WARN,
     LOG_ERROR
 } LogLevel;
 
 void cres_log(LogLevel log_level, char* msg, ...);
+void cres_valog(LogLevel log_level, char* msg, va_list args);
 
 #endif /** __CRES_LOG_H__ */

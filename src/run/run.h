@@ -5,6 +5,6 @@
 #include "../util/app.h"
 #include "../util/log/log.h"
 
-void run(App *app);
+extern const Command RUN_COMMAND;
 
 #endif

@@ -7,8 +7,26 @@
     "args": ["-o", "build/sample"]
   },
   "finder": {
-    "strategy": "FILE_ID",
-    "skip-files": ["src/main.c"]
+    "entry": {
+      "strategy": "'FILE_ID'|'PATH'"
+    },
+    "header": {
+      "strategy": "'RELATIVE'|'PARALLEL_LEVEL'|'PARALLEL_FLAT'",
+      "dir": "include"
+    }
+  },
+
+  "lib": {
+    "source": {
+      "dirs": ["lib/source"]
+    },
+    "dynamic": {
+      "dirs": ["lib/dynamic"],
+      "should-duplicate-out": true
+    },
+    "static": {
+      "dirs": ["lib/static"]
+    }
   },
 
   "run": {

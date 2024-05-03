@@ -5,28 +5,14 @@
 #include "help/help.h"
 #include "run/run.h"
 
-const char *COMMAND_IDS[] = {"help", "run", "build", "header"};
-const size_t COMMAND_IDS_LEN = sizeof(COMMAND_IDS) / sizeof(COMMAND_IDS[0]);
+const Command const *COMMANDS[] = {
+    &HELP_COMMAND,
+    &RUN_COMMAND,
+    &BUILD_COMMAND,
+    &HELP_COMMAND
 
-Command command_factory(char *command_id) {
-    if (strcmp(command_id, "help") == 0) {
-        return (Command){HELP, help, help_handle_args};
-    }
-
-    if (strcmp(command_id, "run") == 0) {
-        return (Command){RUN, run, help_handle_args};
-    }
-
-    if (strcmp(command_id, "build") == 0) {
-        return (Command){BUILD, build, help_handle_args};
-    }
-
-    if (strcmp(command_id, "header") == 0) {
-        return (Command){HEADER, header, help_handle_args};
-    }
-
-    return (Command){UNKNOWN, NULL, NULL};
-}
+};
+const size_t COMMANDS_LEN = sizeof(COMMANDS) / sizeof(COMMANDS[0]);
 
 void app_set_command(App *app, Args *args) {
     /**
@@ -35,7 +21,7 @@ void app_set_command(App *app, Args *args) {
      * 'help' in most cases.
      */
     if (args->len == 1) {
-        app->command = command_factory((char *)COMMAND_IDS[0]);
+        app->command = &HELP_COMMAND;
         return;
     }
 
@@ -46,15 +32,19 @@ void app_set_command(App *app, Args *args) {
     for (int i = 1; i < args->len; i++) {
         char *arg = args->data[i];
 
-        for (int j = 0; j < COMMAND_IDS_LEN; j++) {
-            char *current_command = (char *)COMMAND_IDS[j];
+        for (int j = 0; j < COMMANDS_LEN; j++) {
+            const Command *current_command = COMMANDS[j];
 
-            if (strcmp(arg, current_command) == 0) {
-                app->command = command_factory(arg);
+            if (strcmp(arg, current_command->label) == 0) {
+                app->command = current_command;
                 return;
             }
         }
     }
 
-    app_throw_error(UNKNOWN_COMMAND_ERROR);
+    app_throw_error((AppError){
+        UNKNOWN_COMMAND_ERROR,
+        "No command specified, type help for more information."
+
+    });
 }

@@ -22,7 +22,16 @@ char *get_app_status_msg(AppStatus status) {
     return (char *)UNKNOWN_ERROR;
 }
 
-void app_throw_error(AppStatus error_status) {
-    cres_log(LOG_ERROR, get_app_status_msg(error_status));
-    exit(error_status);
+void app_throw_error(AppError error, ...) {
+    va_list args;
+    va_start(args, error);
+
+    if (error.msg) {
+        cres_valog(LOG_ERROR, error.msg, args);
+    } else {
+        cres_valog(LOG_ERROR, get_app_status_msg(error.status), args);
+    }
+
+    va_end(args);
+    exit(error.status);
 }

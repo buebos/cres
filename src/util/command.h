@@ -20,6 +20,25 @@
 
 #define __COMMAND_H__
 
+/**
+ * The maximum char len a command label can have. Usually
+ * this are short: ('run': 3), ('build': 5). (+ Null terminators)
+ */
+#define MAX_COMMAND_STR_LEN 32
+/**
+ * The maximum char length a command arg key and default value
+ * can have.
+ */
+#define MAX_COMMAND_ARG_STR_LEN 128
+#define MAX_COMMAND_ARG_PARAMS 1
+/**
+ * The maximum identifier keys a command arg can have, for example
+ * a version arg could have two keys: ['-v', '--version']. Most of
+ * CLIs I've seen set two ids for each argument: a short and a
+ * detailed one.
+ */
+#define MAX_COMMAND_ARG_ALIASES 2
+
 #include <stdlib.h>
 #include <string.h>
 
@@ -28,6 +47,9 @@
  * kind of useless (PREFIX, BUNDLE).
  */
 typedef enum CommandID {
+    /** The equivalent to call only the executable */
+    CRES,
+
     /**
      * Resolve the C files to export as objects, link them,
      * write the output and run the resulting binary.
@@ -61,26 +83,37 @@ typedef enum CommandID {
     /**
      * Display options and mini tutorial.
      */
-    HELP,
-
-    /**
-     * Used when a given string or input doesn't match any of
-     * these enum members.
-     */
-    UNKNOWN
+    HELP
 } CommandID;
 
 /** This will be defined later inside app.h */
 typedef struct Args Args;
 typedef struct App App;
 
-typedef void (*RunCommandOperation)(App* app);
-typedef void (*HandleArgsOperation)(App* app, Args* args);
+typedef void (*CommandRunOperation)(App* app);
+typedef void (*CommandSetupArgsOperation)(App* app, Args* args);
+
+typedef struct CommandParam {
+    unsigned int key;
+    char* value;
+} CommandParam;
+
+typedef struct CommandArg {
+    unsigned int id;
+
+    char aliases[MAX_COMMAND_ARG_ALIASES][MAX_COMMAND_STR_LEN];
+    CommandParam params[MAX_COMMAND_ARG_PARAMS];
+
+} CommandArg;
 
 typedef struct Command {
     CommandID id;
-    RunCommandOperation run;
-    HandleArgsOperation setup_args;
+    char label[MAX_COMMAND_STR_LEN];
+
+    CommandArg args[MAX_COMMAND_ARG_STR_LEN];
+
+    CommandRunOperation run;
+    CommandSetupArgsOperation setup_args;
 } Command;
 
 #endif

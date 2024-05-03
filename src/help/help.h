@@ -5,7 +5,6 @@
 #include "../util/app.h"
 #include "../util/log/log.h"
 
-void help(App* app);
-void help_handle_args(App* app, Args* args);
+extern const Command HELP_COMMAND;
 
 #endif
