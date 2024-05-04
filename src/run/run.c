@@ -1,8 +1,7 @@
 #include "run.h"
 
 typedef enum ArgElementIdentifier {
-    FIND_STRATEGY,
-    FIND_STRATEGY_VALUE
+    FIND_STRATEGY
 
 } ArgElementIdentifier;
 
@@ -26,9 +25,11 @@ const Command RUN_COMMAND = {
         {
 
             .id = FIND_STRATEGY,
+            .is_set = false,
             .aliases = {"-fs", "--find-strategy"},
+            .params_len = 1,
             .params = {
-                {.key = FIND_STRATEGY_VALUE, .value = NULL}
+                {.type = CMD_PARAM_ENUM, .value = NULL, .value_constraints = {"dir", "fileid"}}
 
             }
 

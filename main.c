@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
      */
     app_setup_common_args(&app, &app.args);
 
-    /** Notice that config may override params setted by cli args */
+    /** Notice that config may override params set by cli args */
     if (!app.params.should_skip_config) {
         app_setup_config(&app, app.params.config_dir);
     }

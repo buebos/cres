@@ -2,7 +2,6 @@
 
 typedef enum ArgElementIdentifier {
     FIND_STRATEGY,
-    FIND_STRATEGY_VALUE
 
 } ArgElementIdentifier;
 
@@ -23,7 +22,7 @@ const Command HELP_COMMAND = {
             .id = FIND_STRATEGY,
             .aliases = {"-fs", "--find-strategy"},
             .params = {
-                {.key = FIND_STRATEGY_VALUE, .value = NULL}
+                {.value = NULL}
 
             }
 

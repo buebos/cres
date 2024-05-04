@@ -1,37 +1,57 @@
-{
-  "author": "Gael Herrera",
-  "description": "This is a sample project for the cres tool",
+[
+  {
+    "config": "global",
 
-  "compiler": {
-    "command": "gcc",
-    "args": ["-o", "build/sample"]
-  },
-  "finder": {
-    "entry": {
-      "strategy": "'FILE_ID'|'PATH'"
+    "author": "Gael Herrera",
+    "description": "This is a sample project for the cres tool",
+
+    "compiler": {
+      "command": "gcc",
+      "args": ["-o", "build/sample"]
     },
-    "header": {
-      "strategy": "'RELATIVE'|'PARALLEL_LEVEL'|'PARALLEL_FLAT'",
-      "dir": "include"
+    "finder": {
+      "entry": {
+        "strategy": "'FILE_ID'|'PATH'"
+      },
+      "header": {
+        "strategy": "'RELATIVE'|'PARALLEL_LEVEL'|'PARALLEL_FLAT'",
+        "dir": "include"
+      }
+    },
+
+    "lib": {
+      "source": {
+        "dirs": ["lib/source"]
+      },
+      "dynamic": {
+        "dirs": ["lib/dynamic"],
+        "should-duplicate-out": true
+      },
+      "static": {
+        "dirs": ["lib/static"]
+      }
+    },
+
+    "run": {
+      "entry": "main.c"
+    },
+    "prefix": {},
+    "header": {}
+  },
+  {
+    "config": "dev",
+
+    "lib": {
+      "source": {
+        "dirs": ["lib/dev/source"]
+      },
+      "dynamic": {
+        "dirs": ["lib/dev/dynamic"],
+        "should-duplicate-out": true
+      },
+      "static": {
+        "dirs": ["lib/dev/static"]
+      }
     }
-  },
-
-  "lib": {
-    "source": {
-      "dirs": ["lib/source"]
-    },
-    "dynamic": {
-      "dirs": ["lib/dynamic"],
-      "should-duplicate-out": true
-    },
-    "static": {
-      "dirs": ["lib/static"]
-    }
-  },
-
-  "run": {
-    "entry": "main.c"
-  },
-  "prefix": {},
-  "header": {}
-}
+  }
+]

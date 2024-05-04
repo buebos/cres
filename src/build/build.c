@@ -1,8 +1,7 @@
 #include "build.h"
 
 typedef enum ArgElementIdentifier {
-    FIND_STRATEGY,
-    FIND_STRATEGY_VALUE
+    FIND_STRATEGY
 
 } ArgElementIdentifier;
 
@@ -22,7 +21,7 @@ const Command BUILD_COMMAND = {
             .id = FIND_STRATEGY,
             .aliases = {"-fs", "--find-strategy"},
             .params = {
-                {.key = FIND_STRATEGY_VALUE, .value = NULL}
+                {.value = NULL}
 
             }
 

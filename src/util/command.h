@@ -39,6 +39,8 @@
  */
 #define MAX_COMMAND_ARG_ALIASES 2
 
+#define MAX_COMMAND_PARAMS 10
+
 #include <stdlib.h>
 #include <string.h>
 
@@ -86,6 +88,17 @@ typedef enum CommandID {
     HELP
 } CommandID;
 
+typedef enum CommandParamType {
+    CMD_PARAM_STR,
+    CMD_PARAM_INT,
+    CMD_PARAM_FLOAT,
+
+    CMD_PARAM_ENUM,
+
+    CMD_PARAM_DIR,
+    CMD_PARAM_FILEDIR
+} CommandParamType;
+
 /** This will be defined later inside app.h */
 typedef struct Args Args;
 typedef struct App App;
@@ -94,23 +107,30 @@ typedef void (*CommandRunOperation)(App* app);
 typedef void (*CommandSetupArgsOperation)(App* app, Args* args);
 
 typedef struct CommandParam {
-    unsigned int key;
+    CommandParamType type;
+
     char* value;
+
+    char value_constraints[MAX_COMMAND_PARAMS][MAX_COMMAND_ARG_STR_LEN];
 } CommandParam;
 
 typedef struct CommandArg {
     unsigned int id;
 
     char aliases[MAX_COMMAND_ARG_ALIASES][MAX_COMMAND_STR_LEN];
-    CommandParam params[MAX_COMMAND_ARG_PARAMS];
 
+    bool is_set;
+
+    size_t params_len;
+    CommandParam params[MAX_COMMAND_ARG_PARAMS];
 } CommandArg;
 
 typedef struct Command {
     CommandID id;
     char label[MAX_COMMAND_STR_LEN];
 
-    CommandArg args[MAX_COMMAND_ARG_STR_LEN];
+    CommandParam params[MAX_COMMAND_PARAMS];
+    CommandArg args[MAX_COMMAND_PARAMS];
 
     CommandRunOperation run;
     CommandSetupArgsOperation setup_args;

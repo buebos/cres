@@ -9,7 +9,7 @@ const Command const *COMMANDS[] = {
     &HELP_COMMAND,
     &RUN_COMMAND,
     &BUILD_COMMAND,
-    &HELP_COMMAND
+    &HEADER_COMMAND
 
 };
 const size_t COMMANDS_LEN = sizeof(COMMANDS) / sizeof(COMMANDS[0]);
