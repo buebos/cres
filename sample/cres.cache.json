@@ -1,0 +1,10 @@
+{
+   "build": {
+      "resolver": {
+         "defmaps": {
+            "src/example.h": ["src/example.c", "src/example_component.c"],
+            "src/example_no_imps_needed.h": []
+         }
+      }
+   }
+}

@@ -3,11 +3,9 @@
 #include "build/build.h"
 #include "header/header.h"
 #include "help/help.h"
-#include "run/run.h"
 
 const Command const *COMMANDS[] = {
     &HELP_COMMAND,
-    &RUN_COMMAND,
     &BUILD_COMMAND,
     &HEADER_COMMAND
 
