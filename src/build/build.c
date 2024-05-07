@@ -62,7 +62,7 @@ const Command BUILD_COMMAND = {
         {
             .id = BUILD_DEFINES,
             .aliases = {"-d", "--defines"},
-            .max_params_len = -1,
+            .max_params_len = 0,
             .params = {0},
         },
         {
@@ -98,7 +98,7 @@ const Command BUILD_COMMAND = {
         },
         {
             .id = BUILD_OUT_TEMPDIR,
-            .aliases = {"-tmp", "--out-temp-dir"},
+            .aliases = {"-otmp", "--out-temp-dir"},
             .max_params_len = 1,
             .params = {
                 .len = 1,

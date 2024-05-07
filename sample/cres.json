@@ -42,7 +42,7 @@
             "${build.entry.dir}/lib/**/*",
             "${build.entry.dir}/__tests__/**/*"
          ],
-         "includes": ["lib/sources/**/*"]
+         "includes": []
       },
 
       "lib": {
