@@ -38,7 +38,7 @@ typedef struct CliParseResult {
 } CliParseResult;
 
 typedef enum CliArgType {
-    CLI_ARG_DELIMITER,
+    CLI_ARG_FLAG,
     CLI_ARG_POSITIONAL,
 } CliArgType;
 
@@ -54,7 +54,7 @@ typedef enum CliValueType {
     CLI_PATH_DIR,
 } CliValueType;
 
-typedef struct CliParam {
+typedef struct CliValue {
     char* id;
     CliValueType type;
 
@@ -64,14 +64,14 @@ typedef struct CliParam {
     char** value_constraints;
 
     void* value;
-} CliParam;
+} CliValue;
 
 typedef struct CliArg {
     char* id;
     CliArgType type;
-    CliParam* positional;
+    CliValue* positional;
 
-    CliParam* params;
+    CliValue* params;
     size_t params_len;
 } CliArg;
 

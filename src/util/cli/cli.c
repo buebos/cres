@@ -9,14 +9,14 @@ const CliCommand Build = {
 
     .run = NULL,
 
-    .args_len = 0,
+    .args_len = 3,
     .args = &(CliArg[]){
         {
             .id = "entry",
             .type = CLI_ARG_POSITIONAL,
             .params_len = 0,
             .params = NULL,
-            .positional = &(CliParam){
+            .positional = &(CliValue){
                 .id = "entry",
                 .type = CLI_PATH_FILE,
                 .is_list = false,
@@ -26,9 +26,9 @@ const CliCommand Build = {
         },
         {
             .id = "variant",
-            .type = CLI_ARG_DELIMITER,
+            .type = CLI_ARG_FLAG,
             .params_len = 1,
-            .params = &(CliParam[]){
+            .params = &(CliValue[]){
                 {
                     .id = "variant",
                     .type = CLI_STR,
@@ -40,9 +40,9 @@ const CliCommand Build = {
         },
         {
             .id = "targets",
-            .type = CLI_ARG_DELIMITER,
+            .type = CLI_ARG_FLAG,
             .params_len = 1,
-            .params = &(CliParam[]){
+            .params = &(CliValue[]){
                 {
                     .id = "targets",
                     .type = CLI_STR,
