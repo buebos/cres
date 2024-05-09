@@ -28,6 +28,8 @@ void build_setup_args(App* app, Args* args) {}
 
 void build(App* app) {
     cres_log(LOG_WARN, "BUILD Command not implemented");
+
+    char* entry = cli_get(BUILD_COMMAND, "entry");
 }
 
 const Command BUILD_COMMAND = {

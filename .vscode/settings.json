@@ -41,7 +41,17 @@
     "vcruntime.h": "c",
     "cli.h": "c",
     "*.rh": "c",
-    "xutility": "c"
+    "xutility": "c",
+    "compare": "c",
+    "concepts": "c",
+    "limits": "c",
+    "new": "c",
+    "type_traits": "c",
+    "typeinfo": "c",
+    "utility": "c",
+    "xtr1common": "c",
+    "cmath": "c",
+    "format": "c"
   },
   "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}",
   "material-icon-theme.folders.associations": {
