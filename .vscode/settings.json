@@ -51,7 +51,15 @@
     "utility": "c",
     "xtr1common": "c",
     "cmath": "c",
-    "format": "c"
+    "format": "c",
+    "xlocale": "c",
+    "algorithm": "c",
+    "functional": "c",
+    "optional": "c",
+    "system_error": "c",
+    "array": "c",
+    "tuple": "c",
+    "xiosbase": "c"
   },
   "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}",
   "material-icon-theme.folders.associations": {

@@ -8,6 +8,11 @@
 
 #include "../ds/stack.h"
 
+/** The '--' chars before flags */
+#define CLI_FLAG_ID_PRE_LEN 2
+/** The '-' char before flag short aliases */
+#define CLI_FLAG_ALIAS_PRE_LEN 1
+
 #define CLI_ARGS(preargs)                                            \
     (&(CliFlag[]) {                                                  \
         CliFlag flags[] = preargs;                                   \
@@ -17,11 +22,18 @@
         flags;                                                       \
     })
 
+typedef struct CliParam CliParam;
+typedef struct CliFlag CliFlag;
+typedef struct CliCommand CliCommand;
+
 typedef enum CliParseResStatus {
     CLI_PARSE_SUCCESS,
-    CLI_PARSE_UNKNOWN_TOK,
-    CLI_PARSE_INVALID_ARG_TYPE,
-    CLI_PARSE_MISSING_ARG,
+    CLI_PARSE_ERROR_PARAM_TYPE,
+    CLI_PARSE_ERROR_UNKNOWN_TOK,
+    CLI_PARSE_ERROR_PARAM_MISSING,
+    CLI_PARSE_ERROR_PARAM_OUT,
+
+    CLI_PARSE_ERROR_FLAG_MISSING,
 } CliParseResStatus;
 
 typedef struct CliParseUnknownTok {
@@ -49,6 +61,23 @@ typedef enum CliParamType {
     CLI_PATH_DIR,
 } CliParamType;
 
+typedef enum CliTokType {
+    CLI_TOK_UNKNOWN,
+    CLI_TOK_PARAM,
+    CLI_TOK_FLAG,
+    CLI_TOK_CMD,
+} CliTokType;
+typedef union CliTokMatch {
+    CliParam* param;
+    CliFlag* flag;
+    CliCommand* cmd;
+} CliTokMatch;
+typedef struct CliTok {
+    CliTokType type;
+    CliTokMatch match;
+    char* value;
+} CliTok;
+
 typedef struct CliParam {
     char* id;
     CliParamType type;
@@ -57,6 +86,7 @@ typedef struct CliParam {
     bool is_nullable;
 
     char** value_constraints;
+    size_t value_constraints_len;
 
     void* _value;
 } CliParam;
@@ -69,6 +99,9 @@ typedef struct CliFlag {
 
     CliParam* params;
     size_t params_len;
+
+    bool is_nullable;
+    bool _is_set;
 } CliFlag;
 
 typedef struct CliCommand {
