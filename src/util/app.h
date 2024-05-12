@@ -5,9 +5,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#include "../../lib/source/clic/include/core.h"
-#include "../../lib/source/clic/include/get.h"
-#include "../../lib/source/clic/include/parse.h"
+#include "../../module/clic/include/core.h"
+#include "../../module/clic/include/get.h"
+#include "../../module/clic/include/parse.h"
 
 #define APP_NAME "cres"
 

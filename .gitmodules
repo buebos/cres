@@ -1,3 +1,3 @@
-[submodule "clic"]
-path = lib/source/clic
+[submodule "module/clic"]
+path = module/clic
 url = https://github.com/buebos/clic

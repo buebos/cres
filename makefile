@@ -1,13 +1,13 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -g
 TARGET = cres
-SOURCES = src/lib/source/clic/src/util/*.c \
-         src/lib/source/clic/src/token/*.c \
-         src/lib/source/clic/src/*.c \
+SOURCES = src/module/clic/src/util/*.c \
+         src/module/clic/src/token/*.c \
+         src/module/clic/src/*.c \
          src/util/app.c \
          src/util/log/log.c \
          src/app/config/app_setup_config.c \
-         src/app/cli/app_cli_handle_error.c \
+         src/app/cli/app_handle_cli_error.c \
          src/build/build.c \
          src/header/header.c \
          src/help/help.c \

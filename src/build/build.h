@@ -6,4 +6,6 @@
 
 extern CliCommand Build;
 
+AppStatus build(App* app);
+
 #endif /* __CREATE_HEADER_FILE__ */

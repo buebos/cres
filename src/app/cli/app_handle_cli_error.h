@@ -2,7 +2,7 @@
 
 #define __APP_CLI_HANDLE_ERROR_
 
-#include "../../../lib/source/clic/include/parse.h"
+#include "../../../module/clic/include/parse.h"
 #include "../../util/app.h"
 #include "../../util/log/log.h"
 

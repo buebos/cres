@@ -7,4 +7,6 @@
 
 extern CliCommand Help;
 
+AppStatus help(App* app);
+
 #endif

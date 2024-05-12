@@ -60,7 +60,7 @@
     "array": "c",
     "tuple": "c",
     "xiosbase": "c",
-    "app_cli_handle_error.h": "c",
+    "app_handle_cli_error.h": "c",
     "param.h": "c",
     "token.h": "c",
     "flag.h": "c",
