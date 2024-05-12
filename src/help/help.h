@@ -5,6 +5,6 @@
 #include "../util/app.h"
 #include "../util/log/log.h"
 
-extern const Command HELP_COMMAND;
+extern CliCommand Help;
 
 #endif

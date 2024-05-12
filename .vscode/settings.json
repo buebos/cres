@@ -59,7 +59,16 @@
     "system_error": "c",
     "array": "c",
     "tuple": "c",
-    "xiosbase": "c"
+    "xiosbase": "c",
+    "app_cli_handle_error.h": "c",
+    "param.h": "c",
+    "token.h": "c",
+    "flag.h": "c",
+    "cmd.h": "c",
+    "core.h": "c",
+    "cli_parse.h": "c",
+    "parse.h": "c",
+    "app_handle_cli_error.h": "c"
   },
   "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}",
   "material-icon-theme.folders.associations": {

@@ -1,17 +1,17 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -g
 TARGET = cres
-SOURCES = src/util/log/log.c \
-        src/util/app.c \
-        src/app/app_setup_common_args.c \
-        src/app/config/json/read.c \
-        src/app/config/app_setup_config.c \
-        src/help/help.c \
-        src/run/run.c \
-        src/build/build.c \
-        src/header/header.c \
-        src/app_set_command.c \
-        main.c
+SOURCES = src/lib/source/clic/src/util/*.c \
+         src/lib/source/clic/src/token/*.c \
+         src/lib/source/clic/src/*.c \
+         src/util/app.c \
+         src/util/log/log.c \
+         src/app/config/app_setup_config.c \
+         src/app/cli/app_cli_handle_error.c \
+         src/build/build.c \
+         src/header/header.c \
+         src/help/help.c \
+         main.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

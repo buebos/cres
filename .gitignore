@@ -6,4 +6,4 @@ build/*
 *.out
 
 # In case of adding libraries
-lib/*
+lib

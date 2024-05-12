@@ -1,35 +1,22 @@
 #include "help.h"
 
-typedef enum ArgElementIdentifier {
-    FIND_STRATEGY,
+CliCommand Help = {
+    .id = "help",
+    .run = help,
 
-} ArgElementIdentifier;
+    .aliases_len = 0,
+    .aliases = NULL,
 
-void help_setup_args(App* app, Args* args) {
-}
+    .params_len = 0,
+    .params = NULL,
 
-void help(App* app) {
+    .cmds_len = 0,
+    .cmds = NULL,
+
+    .flags_len = 0,
+    .flags = NULL,
+};
+
+AppStatus help(App* app) {
     cres_log(LOG_WARN, "HELP Command not implemented");
 }
-
-const Command HELP_COMMAND = {
-    .id = HELP,
-    .label = "help",
-    .args = {
-
-        {
-
-            .id = FIND_STRATEGY,
-            .aliases = {"-fs", "--find-strategy"},
-            .params = {
-                {.value = NULL}
-
-            }
-
-        }
-
-    },
-    .run = help,
-    .setup_args = help_setup_args
-
-};

@@ -8,5 +8,11 @@
  * and centrelized way on the app's context.
  */
 void app_setup_config(App* app, char* config_dir) {
+    if (config_dir == NULL) {
+        config_dir = DEFAULT_CONFIG_DIR;
+    }
+
+    cres_log(LOG_WARN, "Config setup not implemented.");
+
     return;
 }

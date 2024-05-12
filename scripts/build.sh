@@ -6,7 +6,7 @@ if [[ "$kernel_release" == *"Microsoft"* || "$kernel_release" == *"microsoft"* ]
 fi
 
 if [[ $is_windows ]]; then
-    cmd.exe /C "gcc src/util/log/log.c src/util/app.c src/app/app_setup_common_args.c src/app/config/json/read.c src/app/config/app_setup_config.c src/help/help.c src/run/run.c src/build/build.c src/header/header.c src/app_set_command.c main.c -o build/cres"
+    cmd.exe /C "gcc lib/source/clic/src/util/*.c lib/source/clic/src/token/*.c lib/source/clic/src/*.c src/util/app.c src/util/log/log.c src/app/config/app_setup_config.c src/app/cli/app_cli_handle_error.c src/build/build.c src/header/header.c src/help/help.c main.c -o build/cres"
 else
-    gcc src/util/log/log.c src/util/app.c src/app/app_setup_common_args.c src/app/config/json/read.c src/app/config/app_setup_config.c src/help/help.c src/run/run.c src/build/build.c src/header/header.c src/app_set_command.c main.c -o build/cres
+    gcc lib/source/clic/src/util/*.c lib/source/clic/src/token/*.c lib/source/clic/src/*.c src/util/app.c src/util/log/log.c src/app/config/app_setup_config.c src/app/cli/app_cli_handle_error.c src/build/build.c src/header/header.c src/help/help.c main.c -o build/cres
 fi

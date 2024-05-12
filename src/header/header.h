@@ -4,6 +4,6 @@
 #include "../util/app.h"
 #include "../util/log/log.h"
 
-extern const Command HEADER_COMMAND;
+extern CliCommand Header;
 
 #endif

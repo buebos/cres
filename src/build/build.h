@@ -4,6 +4,6 @@
 #include "../util/app.h"
 #include "../util/log/log.h"
 
-extern const Command BUILD_COMMAND;
+extern CliCommand Build;
 
 #endif /* __CREATE_HEADER_FILE__ */

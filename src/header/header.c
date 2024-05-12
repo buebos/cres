@@ -1,11 +1,21 @@
 #include "header.h"
 
-typedef enum ArgElementIdentifier {
-    FIND_STRATEGY
+CliCommand Header = {
+    .id = "help",
+    .run = header,
 
-} ArgElementIdentifier;
+    .aliases_len = 0,
+    .aliases = NULL,
 
-void header_setup_args(App* app, Args* args) {}
+    .params_len = 0,
+    .params = NULL,
+
+    .cmds_len = 0,
+    .cmds = NULL,
+
+    .flags_len = 0,
+    .flags = NULL,
+};
 
 /**
  * Generates a header file for the c file requested.
@@ -15,28 +25,6 @@ void header_setup_args(App* app, Args* args) {}
  * @param params The arguments struct that was constructed from the
  * call to the executable command
  */
-void header(App* app) {
+AppStatus header(App* app) {
     cres_log(LOG_WARN, "HEADER Command not implemented");
 }
-
-const Command HEADER_COMMAND = {
-    .id = HEADER,
-    .label = "header",
-    .args = {
-
-        {
-
-            .id = FIND_STRATEGY,
-            .aliases = {"-fs", "--find-strategy"},
-            .params = {
-                {.value = NULL}
-
-            }
-
-        }
-
-    },
-    .run = header,
-    .setup_args = header_setup_args
-
-};

@@ -1,45 +1,57 @@
-#include "src/app/app_setup_common_args.h"
+#include "src/app/cli/app_handle_cli_error.h"
 #include "src/app/config/app_setup_config.h"
-#include "src/app_set_command.h"
+#include "src/build/build.h"
+#include "src/header/header.h"
+#include "src/help/help.h"
 #include "src/util/app.h"
-#include "src/util/log/log.h"
+
+Cli cli = {
+    .name = "cres",
+    .epilogue = "Cres application",
+
+    .cmds_len = 3,
+    .cmds = (CliCommand *[]){
+        &Help,
+        &Build,
+        &Header,
+    },
+
+    .flags_len = 0,
+    .flags = NULL,
+};
 
 int main(int argc, char *argv[]) {
-    App app = {0};
-
     /** App initialization */
-    app.args = (Args){argc, argv};
-    app.params.config_dir = DEFAULT_CONFIG_DIR;
+    App app = {
+        .cli = &cli,
+        .args = {
+            .len = argc,
+            .data = argv,
+        },
+    };
 
     /**
-     * Read and set data passed in by the user via args
-     * or config file to initialize the app's general
-     * context. The arguments read are be independent
-     * from the command called.
+     * Parse the incoming string arguments using the declared
+     * cli schema.
      */
-    app_setup_common_args(&app, &app.args);
+    CliParseResult res = cli_parse(app.cli, app.args.len, app.args.data);
 
-    /** Notice that config may override params set by cli args */
-    if (!app.params.should_skip_config) {
-        app_setup_config(&app, app.params.config_dir);
+    if (res.status != CLI_PARSE_SUCCESS) {
+        return app_handle_cli_error(&app, res);
     }
 
     /**
-     * Find and set the command being executed
+     * Skip the config file when the arguments are specified. Args
+     * will be generally prior to the config file.
      */
-    app_set_command(&app, &app.args);
+    if (!cli_get(app.cli, "skip-config")) {
+        app_setup_config(&app, (char *)cli_get(app.cli, "config-dir"));
+    }
 
     /**
-     * Read and set args passed in specifically to the command
-     * being executed.
+     * Get the target command called by the user.
      */
-    app.command->setup_args(&app, &app.args);
+    CliCommand *target = cli_get_cmd(app.cli);
 
-    /**
-     * The most important thing; after the setup is successful,
-     * run the command.
-     */
-    app.command->run(&app);
-
-    return SUCCESS;
+    return ((AppCmdRun)target->run)(&app);
 }

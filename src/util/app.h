@@ -5,15 +5,15 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#include "command.h"
+#include "../../lib/source/clic/include/core.h"
+#include "../../lib/source/clic/include/get.h"
+#include "../../lib/source/clic/include/parse.h"
 
 #define APP_NAME "cres"
 
 #define DEFAULT_FILE_TARGET "./main.c"
-#define DEFAULT_CONFIG_DIR "./cres.json"
 
-#define DEFAULT_COMMAND_ID HELP
-#define DEFAULT_COMMAND_FN help
+typedef struct App App;
 
 typedef enum AppStatus {
     SUCCESS,
@@ -23,6 +23,8 @@ typedef enum AppStatus {
     UNKNOWN_ARG_ERROR,
     ARG_MISSING_PARAM_ERROR
 } AppStatus;
+
+typedef AppStatus (*AppCmdRun)(App *app);
 
 typedef struct AppError {
     AppStatus status;
@@ -34,17 +36,9 @@ typedef struct Args {
     char **data;
 } Args;
 
-typedef struct Params {
-    char *config_dir;
-
-    bool should_skip_config;
-} Params;
-
 typedef struct App {
     Args args;
-    Params params;
-
-    const Command *command;
+    Cli *cli;
 } App;
 
 char *get_app_status_msg(AppStatus status);
