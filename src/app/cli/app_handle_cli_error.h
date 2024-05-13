@@ -1,6 +1,6 @@
 #ifndef __APP_CLI_HANDLE_ERROR_H__
 
-#define __APP_CLI_HANDLE_ERROR_
+#define __APP_CLI_HANDLE_ERROR_H__
 
 #include "../../../module/clic/include/parse.h"
 #include "../../util/app.h"

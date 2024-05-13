@@ -66,4 +66,6 @@ AppStatus build(App* app) {
     char* entry = cli_get(app->cli, "entry");
 
     printf("Entry: %s\n", entry);
+
+    return SUCCESS;
 }

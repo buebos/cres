@@ -27,4 +27,6 @@ CliCommand Header = {
  */
 AppStatus header(App* app) {
     cres_log(LOG_WARN, "HEADER Command not implemented");
+
+    return SUCCESS;
 }
