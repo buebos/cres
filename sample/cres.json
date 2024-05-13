@@ -20,10 +20,9 @@
       },
 
       "out": {
-         "dir": "build/${build.type}/${build.target}",
+         "dir": "build/${build.name}/${build.target}",
          "tempdir": "build/temp",
-         "filename": "${build.entry.filename}",
-         "lib": false
+         "filename": "${build.entry.filename}"
       },
 
       "copies": [
@@ -50,6 +49,6 @@
          "dynamics": ["${build.entry.dir}/lib/dynamic/**/*.dll"]
       },
 
-      "variants": [{ "type": "DEBUG", "defines": ["DEBUG"] }]
+      "variants": [{ "name": "DEBUG", "defines": ["DEBUG"] }]
    }
 }
